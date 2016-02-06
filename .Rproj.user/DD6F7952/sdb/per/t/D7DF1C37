@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454722068475.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D7DF1C37",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "wcp08usqi9",
+        "caption" : "mjna.2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mjna.2&cache_key=wcp08usqi9",
+        "displayedObservations" : "252",
+        "environment" : "",
+        "object" : "mjna.2",
+        "totalObservations" : "252",
+        "variables" : "8"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

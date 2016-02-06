@@ -1,0 +1,18 @@
+{
+    "contents" : "install.packages(\"dplyr\")\nlibrary(dplyr)\n\n\nmjna.2 <- \n  mjna %>%\n  arrange(Date) %>%\n  mutate(\n    returns = log(Adj.Close) - lag(log(Adj.Close))\n  ) %>%\n  tbl_df()\n\n\nskwness <- function(x){\n  mean((x - mean(x, na.rm = T))^3 / ((sd(x, na.rm = T))^3),\n       na.rm = T)\n}\n#\nskwness(rnorm(50))\n\nktrss <- function(x){\n  mean((x - mean(x, na.rm = T))^4 / ((sd(x, na.rm = T))^4),\n       na.rm = T)\n}\n\nmjna.sum <- mjna.2 %>%\n  summarise(\n    skewness = skwness(returns),\n    kurtosis = ktrss(returns)\n  )\n\ndist.norm <- data.frame(returns = rnorm(99999,0,1)) %>%\n  summarise(\n    skewness = skwness(returns),\n    kurtosis = ktrss(returns)\n  )\n\n\n\nqqnorm(y = mjna.2$returns,\n       datax = T)\nqqline(y = mjna.2$returns,\n       datax = T)\n\n\n#-----\nN = 10000\n\n{\n# bin <- data.frame(\n#   result = rep(NA, N),\n#   dist = rep(NA,N)\n# ) %>% tbl_df()\n# \n# system.time({\n#   for (i in 1:N){\n#     \n#     d100 = runif(n = 1, 0,1)\n#     d_norm = rnorm(1)\n#     d_norm_5.72 = rnorm(1, mean = 5, sd = 7.2)\n#     d_norm_2.11 = rnorm(1, mean = 2, sd = 11)  \n#     \n#     if (d100 <= 0.87){\n#       result = d_norm\n#       dist = \"d_norm\"\n#     } else if (d100 <= 0.97){\n#       result = d_norm_5.72    \n#       dist = \"d_norm_5.72\"\n#     } else {\n#       result = d_norm_2.11\n#       dist = \"d_norm_2.11\"\n#     }\n#     \n#     bin$result[i] <- result\n#     bin$dist[i] <- dist\n#     \n#   }\n# })\n# bin\n# \n}\n\n\nN = 10000\n\nSampler.kurt <- function(N = 100){\n  \n  q2.a <- data.frame(\n    p87 = rnorm(N),\n    p10 = rnorm(N, mean = 5, sd = 7.2),\n    p03 = rnorm(N, mean = 2, sd = 11),\n    d100 = runif(N, 0 , 1)\n  ) %>%\n    mutate(\n      result = ifelse(\n        d100 <= 0.87,\n        yes = p87, \n        no = ifelse(\n          d100 <= 0.97,\n          yes = p10,\n          no = p03\n        )\n      ),\n      dist = ifelse(\n        d100 <= 0.87,\n        yes = \"p87\", \n        no = ifelse(\n          d100 <= 0.97,\n          yes = \"p10\",\n          no = \"p03\"\n        )\n      )\n    )\n  \n  return(ktrss(q2.a$result))\n}\n\nbin.n10 = c()\nfor (i in 1:1000){\n  bin.n10 <- c(bin.n10, Sampler.kurt(100))\n}\nbin.n1000 = c()\nfor (i in 1:1000){\n  bin.n100 <- c(bin.n100, Sampler.kurt(1000))\n}\nbin.n10000 = c()\nfor (i in 1:10000){\n  bin.n1000 <- c(bin.n100, Sampler.kurt(10000))\n}\n\nhist(bin.n10, 100)\nhist(bin.n1000, 100)\nhist(bin.n10000)\n\n\n\n\n\n  \n\n\n",
+    "created" : 1454118951940.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "805023416",
+    "id" : "75996F1C",
+    "lastKnownWriteTime" : 1454724746,
+    "path" : "C:/Users/OKComputer/Dropbox/R Lab/Econ114_RLab/Econ114_Rlab/Assignment2Notes.R",
+    "project_path" : "Assignment2Notes.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

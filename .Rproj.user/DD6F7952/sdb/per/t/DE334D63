@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454122129416.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DE334D63",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "gkqqv9lhiy",
+        "caption" : "mjna.sum",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mjna.sum&cache_key=gkqqv9lhiy",
+        "displayedObservations" : 1,
+        "environment" : "",
+        "object" : "mjna.sum",
+        "totalObservations" : 1,
+        "variables" : 2
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
