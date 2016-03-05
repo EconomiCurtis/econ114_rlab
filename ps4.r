@@ -24,8 +24,8 @@ ggplot(
   geom_point(alpha = 0.05) + 
   stat_smooth()
 
-reg.1 <- lm(V1 ~ x, data = df)
-reg.1 <- glm(V1 ~ x, data = df, )
+reg.1 <-  lm(V1 ~ x, data = df)
+reg.1 <- glm(V1 ~ x, data = df)
 summary(reg.1)
 
 
@@ -36,6 +36,8 @@ ggplot(
   geom_histogram(bins = 60)
 
 summary(df$V1)
+
+ar(df)
 
 #-----------------------------------------
 library(zoo)
@@ -49,14 +51,14 @@ reg.3
 
 
 
-ar.ols(df.ts)
-
-
-
-
-
-reg.4 <- arima(df.ts)
+reg.4 <- ar.ols(df.ts)
 summary(reg.4)
+
+
+
+
+reg.5 <- arima(df.ts)
+summary(reg.5)
 
 
 # ------------
@@ -69,3 +71,4 @@ ggplot(
   geom_line()
 
 acf(df$V1, 50)
+fit <- 
